@@ -21,7 +21,7 @@ export class ReadFromStreamStack extends cdk.Stack {
         path.join(__dirname, '../dist/webpack/src/lambda/read-table-stream')
       ),
       handler: 'handler.handler',
-      timeout: Duration.seconds(30),
+      timeout: Duration.seconds(5),
       environment: {
         TABLE_NAME: props.table.tableName
       }

@@ -32,7 +32,7 @@ export class WriteOnTableStack extends cdk.Stack {
         path.join(__dirname, '../dist/webpack/src/lambda/write-table')
       ),
       handler: 'handler.handler',
-      timeout: cdk.Duration.seconds(30),
+      timeout: cdk.Duration.seconds(90),
       environment: {
         TABLE_NAME: this._table.tableName
       }
