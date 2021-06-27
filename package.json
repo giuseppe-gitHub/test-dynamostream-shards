@@ -5,23 +5,40 @@
     "test-dynamostream-shards": "bin/test-dynamostream-shards.js"
   },
   "scripts": {
-    "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "build": "run-s build:tsc build:webpack",
+    "build:tsc": "tsc",
+    "build:webpack": "webpack --config webpack.config.js",
+    "clean": "run-p clean:*",
+    "clean:build": "rm -rf ./dist || true",
+    "cdk-deploy": "npm run build && cdk deploy"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.103.0",
+    "@types/aws-lambda": "^8.10.77",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
+    "aws-cdk": "1.103.0",
     "jest": "^26.4.2",
     "ts-jest": "^26.2.0",
-    "aws-cdk": "1.103.0",
     "ts-node": "^9.0.0",
-    "typescript": "~3.9.7"
+    "@tsconfig/node12": "^1.0.7",
+    "typescript": "^4.3.0",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.6.0",
+    "globby": "^11.0.2",
+    "strip-json-comments": "^3.1.1",
+    "source-map-loader": "^2.0.1"
   },
   "dependencies": {
+    "@aws-cdk/aws-dynamodb": "1.103.0",
     "@aws-cdk/core": "1.103.0",
-    "source-map-support": "^0.5.16"
+    "aws-sdk": "^2.935.0",
+    "lodash": "^4.17.21",
+    "source-map-support": "^0.5.16",
+    "zod": "^3.2.0"
   }
 }

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from '@aws-cdk/core';
-import { TestDynamostreamShardsStack } from '../lib/test-dynamostream-shards-stack';
+import { WriteOnTableStack } from '../lib/write-on-table-stack';
 
 const app = new cdk.App();
-new TestDynamostreamShardsStack(app, 'TestDynamostreamShardsStack', {
+new WriteOnTableStack(app, 'WriteOnTableStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
