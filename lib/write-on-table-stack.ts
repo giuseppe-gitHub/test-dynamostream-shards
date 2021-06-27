@@ -2,6 +2,8 @@ import * as cdk from '@aws-cdk/core';
 import * as dynamodb from '@aws-cdk/aws-dynamodb'
 import * as lambda from '@aws-cdk/aws-lambda';
 import { AttributeType, BillingMode, StreamViewType } from '@aws-cdk/aws-dynamodb';
+import * as path from 'path';
+import { Duration } from '@aws-cdk/core';
 
 export class WriteOnTableStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -22,8 +24,11 @@ export class WriteOnTableStack extends cdk.Stack {
 
     const lambdaRead = new lambda.Function(this, 'writeTable', {
       runtime: lambda.Runtime.NODEJS_12_X,
-      code: lambda.Code.fromAsset('src/lambda'),
-      handler: 'write-table.handler',
+      code: lambda.Code.fromAsset(
+        path.join(__dirname, '../dist/webpack/src/lambda/write-table')
+      ),
+      handler: 'handler.handler',
+      timeout: Duration.seconds(30),
       environment: {
         TABLE_NAME: table.tableName
       }

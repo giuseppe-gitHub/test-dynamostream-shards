@@ -16,10 +16,10 @@ export async function handler(input: WriteLambdaInput, context: Context): Promis
       pk: 'ITEM',
       sk: i
     };
-    docClient.put({
+    await docClient.put({
       TableName: tableName,
       Item: item
-    })
+    }).promise();
   }
 
 
